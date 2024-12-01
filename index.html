@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>@sahin-basic-sci-fi-calculator</title>
+  <link rel="stylesheet" href="clc.css">
+</head>
+<body>
+  <h1>SAHIN-<br>
+    SCI-FI-<br>
+    CALCULATOR</h1>
+  <form action="clc">
+    <div class="container">
+      <div class="display">
+        <input type="text" name="display" disabled>
+      </div>
+      <div class="special">
+        <button type="button">1</button>
+        <button type="button">2</button>
+        <button type="button">3</button>
+        <button type="button">+</button>
+      </div>
+      <div class="special">
+        <button type="button">4</button>
+        <button type="button">5</button>
+        <button type="button">6</button>
+        <button type="button" >-</button>
+      </div>
+      <div class="special">
+        <button type="button">7</button>
+        <button type="button">8</button>
+        <button type="button">9</button>
+        <button type="button">÷</button>
+      </div>
+      <div class="special">
+        <button type="button">0</button>
+        <button type="button">00</button>
+        <button type="button">del</button>
+        <button type="button">×</button>
+      </div>
+      <div class="special">
+        <button type="button">.</button>
+        <button type="button">C</button>
+        <button type="button">AC</button>
+        <button type="button">=</button>
+      </div>
+    </div>
+  </form>
+
+  <script>
+    const buttons = document.querySelectorAll("button");
+    const display = document.querySelector("input[name='display']");
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const value = button.textContent;
+
+        if (value === "=") {
+          try {
+            display.value = eval(display.value.replace('×', '*').replace('÷', '/'));
+          } catch (error) {
+            display.value = "Error";
+          }
+        } else if (value === "C") {
+          display.value = "";
+        } else if (value === "AC") {
+          display.value = "";
+        } else if (value === "del") {
+          display.value = display.value.slice(0, -1);
+        } else {
+          display.value += value;
+        }
+      });
+    });
+  </script>
+</body>
+</html>
